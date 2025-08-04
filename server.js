@@ -67,7 +67,7 @@ app.post('/upload-single', upload.single('pdf'), async (req, res) => {
 });
 
 // Handle multiple PDF uploads
-app.post('/upload-multiple', upload.array('pdfs', 10), async (req, res) => {
+app.post('/upload-multiple', upload.array('pdfs', 500), async (req, res) => {
     try {
         if (!req.files || req.files.length === 0) {
             return res.status(400).json({ error: 'No PDF files uploaded' });
