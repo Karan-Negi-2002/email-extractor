@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Email Extractor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-envelope"></i> PDF Email Extractor</h1>
+            <p>Upload PDF files to extract email addresses</p>
+        </header>
+
+        <div class="upload-section">
+            <div class="upload-area" id="drop-area">
+                <div class="upload-content">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop PDF files here or <span class="browse-text">browse</span></p>
+                    <p class="upload-hint">You can upload single or multiple PDF files at once</p>
+                    <input type="file" id="file-input" accept=".pdf" multiple hidden>
+                </div>
+            </div>
+            <div id="file-list" class="file-list"></div>
+            <button class="extract-btn" id="extract-btn" disabled>
+                <i class="fas fa-search"></i> Extract Emails
+            </button>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Processing PDF files...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results hidden">
+            <div class="results-header">
+                <h2><i class="fas fa-envelope-open"></i> Extraction Results</h2>
+                <div class="results-actions">
+                    <button class="action-btn" id="download-btn">
+                        <i class="fas fa-download"></i> Download as TXT
+                    </button>
+                    <button class="action-btn secondary" id="clear-results-btn">
+                        <i class="fas fa-trash"></i> Clear Results
+                    </button>
+                </div>
+            </div>
+            
+            <div class="results-summary">
+                <div class="summary-item">
+                    <span class="summary-label">Files Processed:</span>
+                    <span id="files-count">0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Unique Emails:</span>
+                    <span id="emails-count">0</span>
+                </div>
+            </div>
+
+            <div class="emails-container">
+                <div class="emails-header">
+                    <h3><i class="fas fa-at"></i> Discovered Unique Emails</h3>
+                    <button class="copy-btn" id="copy-emails-btn">
+                        <i class="fas fa-copy"></i> Copy All Unique
+                    </button>
+                </div>
+                <div id="emails-list" class="emails-list"></div>
+            </div>
+
+            <!-- File Details (for multiple files) -->
+            <div id="file-details" class="file-details hidden">
+                <h3>Details by File</h3>
+                <div id="file-details-list"></div>
+            </div>
+        </div>
+
+        <!-- Error Messages -->
+        <div id="error-message" class="error-message hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="error-text"></span>
+            <button class="close-error" onclick="hideError()">×</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
